@@ -1,0 +1,24 @@
+<h1>Longest word game</h1>
+
+<div style="display: flex; gap: 10px;">
+  <% @letters.each do |letter| %>
+    <div style="
+      width: 60px;
+      height: 60px;
+      border: 2px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    ">
+      <%= letter.upcase %>
+    </div>
+  <% end %>
+</div>
+
+<form action="<%= score_path %>" method="post" data-turbo="false">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :letters, @letters.join(",") %>
+  <%= text_field_tag :word, nil, placeholder: "Enter your word" %>
+  <%= submit_tag "Submit" %>
+</form>
